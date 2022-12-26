@@ -26,9 +26,7 @@ podTemplate(label: 'spring-boot-jenkins-demo-deploy',containers: [
             container('kaniko'){
                 def registry = "registry.cn-hangzhou.aliyuncs.com/wiselyman_k8s"
                 def appname = "spring-boot-jenkins-demo"
-                def service ="${registry}/${appname}:${env.version}"
-                print ${service}
-               
+                def service = "${registry}/${appname}:${env.version}"
                 sh "executor --context=`pwd` --dockerfile=`pwd`/Dockerfile --destination=${service}"
             }
         }
