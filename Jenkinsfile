@@ -1,6 +1,6 @@
 podTemplate(label: 'spring-boot-jenkins-demo-deploy',containers: [
       containerTemplate(name: 'gradle', image: 'gradle:7.6-jdk17', command: 'cat', ttyEnabled: true), //2
-      containerTemplate(name: 'kaniko', image: 'gcriokaniko/executor:latest', command: 'sleep',  args: '99d'), //3
+      containerTemplate(name: 'kaniko', image: 'gcriokaniko/executor:latest'), //3
       containerTemplate(name: 'helm', image: 'lachlanevenson/k8s-helm:latest', command: 'cat', ttyEnabled: true) //4
   ],
     volumes: [
