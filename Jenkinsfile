@@ -4,7 +4,8 @@ podTemplate(label: 'spring-boot-jenkins-demo-deploy',containers: [
       containerTemplate(name: 'helm', image: 'lachlanevenson/k8s-helm:latest', command: 'cat', ttyEnabled: true) //4
   ],
     volumes: [
-        secretVolume(secretName: 'aliyun-regsecret', mountPath: '/kaniko/.docker')
+        secretVolume(secretName: 'aliyun-regsecret', mountPath: '/kaniko/.docker'),
+  	hostPathVolume(mountPath: '/home/gradle/.gradle', hostPath: '/data/jenkins-gradle/.gradle'),
       ]
   ) {
 
