@@ -9,6 +9,7 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
 repositories {
+	maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
 	mavenCentral()
 }
 
