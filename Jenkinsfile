@@ -10,7 +10,7 @@ podTemplate(label: 'spring-boot-jenkins-demo-deploy',containers: [
 
     node('spring-boot-jenkins-demo-deploy') {
         stage('拉取代码') {
-            git url: 'https://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@github.com/wiselyman/spring-boot-jenkins-demo.git', branch: 'main'
+            git 'https://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@github.com/wiselyman/spring-boot-jenkins-demo.git#refs/heads/main'
         }
 
         stage('编译应用') { //5
