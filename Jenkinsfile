@@ -1,10 +1,10 @@
 podTemplate(label: 'spring-boot-jenkins-demo-deploy',containers: [
       containerTemplate(name: 'gradle', image: 'gradle:7.6-jdk17', command: 'cat', ttyEnabled: true), //2
-      containerTemplate(name: 'kaniko', image: 'gcriokaniko/executor:latest'), //3
+      containerTemplate(name: 'kaniko', image: 'gcriokaniko/executor:debug', command: 'cat', ttyEnabled: true), //3
       containerTemplate(name: 'helm', image: 'lachlanevenson/k8s-helm:latest', command: 'cat', ttyEnabled: true) //4
   ],
     volumes: [
-        secretVolume(secretName: 'aliyun-regsecret', mountPath: '/cred')
+        secretVolume(secretName: 'aliyun-regsecret', mountPath: '/kaniko/.docker')
       ]
   ) {
 
@@ -28,7 +28,7 @@ podTemplate(label: 'spring-boot-jenkins-demo-deploy',containers: [
                 def appname = "spring-boot-jenkins-demo"
                 def service ="${registry}/${appname}:${env.version}"
                 print ${service}
-                sh "cp /cred/.dockerconfigjson /kaniko/.docker/config.json"
+               
                 sh "executor --context=`pwd` --dockerfile=`pwd`/Dockerfile --destination=${service}"
             }
         }
