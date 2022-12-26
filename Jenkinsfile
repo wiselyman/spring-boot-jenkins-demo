@@ -35,7 +35,7 @@ podTemplate(label: 'spring-boot-jenkins-demo-deploy',containers: [
 
         stage('部署程序'){
          container('helm'){
-             sh "helm install --set image.tag=${env.version} spring-boot-jenkins-demo  spring-boot-jenkins-demo/"
+             sh "helm upgrade --install -f spring-boot-jenkins-demo/values.yaml  --set image.tag=${env.version} spring-boot-jenkins-demo  spring-boot-jenkins-demo/"
            }
         }
 
